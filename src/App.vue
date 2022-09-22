@@ -113,8 +113,8 @@ function processInput(selection) {
     pizza.topping = "Order";
     resetButton.value = true;
     pizzaClass.value = "spin-pizza";
-    finishPurchase();
   } else if (stage === 5) {
+    finishPurchase();
     resetOrder();
   }
   stage++;

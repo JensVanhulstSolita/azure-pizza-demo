@@ -71,7 +71,7 @@ let pizza = reactive({
   showPepperoniTopping: false,
 });
 
-function processInput(selection) {
+async function processInput(selection) {
   if (selection === 1) {
     //yes button clicked and do stuff accordingly
     if (stage === 1) {
@@ -114,7 +114,7 @@ function processInput(selection) {
     resetButton.value = true;
     pizzaClass.value = "spin-pizza";
   } else if (stage === 5) {
-    finishPurchase();
+    await finishPurchase();
     resetOrder();
   }
   stage++;
@@ -125,8 +125,8 @@ function resetOrder() {
   window.location.reload();
 }
 
-function finishPurchase() {
-  axios.post(
+async function finishPurchase() {
+  await axios.post(
     "https://apim-kobe-test.azure-api.net/slack-notification",
     {
       text: "🍕 A new order for Pizza has arrived !",

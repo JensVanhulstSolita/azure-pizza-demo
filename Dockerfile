@@ -10,6 +10,9 @@ RUN npm install
 
 COPY . .
 
+ENV VITE_APIM_SUBSCRIPTION_KEY=${VITE_APIM_SUBSCRIPTION_KEY}
+ENV VITE_APIM_LOGIC_URL=${VITE_APIM_LOGIC_URL}
+
 RUN npm run build
 
 #-------------------------------------------

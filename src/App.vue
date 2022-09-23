@@ -141,6 +141,4 @@ async function finishPurchase() {
     }
   );
 }
-
-console.log(import.meta.env);
 </script>

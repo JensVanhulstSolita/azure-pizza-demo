@@ -22,9 +22,13 @@ jobs:
           login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
+
       - run: |
           docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/azure-pizza-maker:latest
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/azure-pizza-maker:latest
+        env:
+          VITE_APIM_SUBSCRIPTION_KEY: ${{ secrets.VITE_APIM_SUBSCRIPTION_KEY }}
+          VITE_APIM_LOGIC_URL: ${{ secrets.VITE_APIM_LOGIC_URL }}
 
       # - name: "Deploy to Azure Container Instances"
       #   uses: "azure/aci-deploy@v1"

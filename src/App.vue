@@ -48,6 +48,7 @@
 <script setup>
 import axios from "axios";
 import { ref, reactive } from "vue";
+import { APIM_LOGIC_URL, APIM_SUBSCRIPTION_KEY } from "./config.js";
 
 //left container
 let stage = 1;
@@ -127,7 +128,7 @@ function resetOrder() {
 
 async function finishPurchase() {
   await axios.post(
-    "https://apim-kobe-test.azure-api.net/slack-notification",
+    APIM_LOGIC_URL,
     {
       text: "🍕 A new order for Pizza has arrived !",
       choices,
@@ -135,9 +136,11 @@ async function finishPurchase() {
     },
     {
       headers: {
-        "Ocp-Apim-Subscription-Key": "eb10e500732e47cb88477af5ba1a85e8",
+        "Ocp-Apim-Subscription-Key": APIM_SUBSCRIPTION_KEY,
       },
     }
   );
 }
+
+console.log(import.meta.env);
 </script>

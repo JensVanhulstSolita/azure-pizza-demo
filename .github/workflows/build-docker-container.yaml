@@ -24,7 +24,11 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - run: |
-          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/azure-pizza-maker:latest
+          docker build \
+            -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/azure-pizza-maker:latest \
+            --build-arg VITE_APIM_SUBSCRIPTION_KEY=${{ secrets.VITE_APIM_SUBSCRIPTION_KEY }} \
+            --build-arg VITE_APIM_LOGIC_URL=${{ secrets.VITE_APIM_LOGIC_URL }} \
+            --no-cache . 
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/azure-pizza-maker:latest
         env:
           VITE_APIM_SUBSCRIPTION_KEY: ${{ secrets.VITE_APIM_SUBSCRIPTION_KEY }}

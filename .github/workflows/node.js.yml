@@ -13,5 +13,5 @@ jobs:
     steps:
       # checkout the repo
       - name: "Checkout GitHub Action"
-        run: echo MY_TEST_KEY = ${{ secrets.REGISTRY_USERNAME }}_${GITHUB_REF##*/}
+        run: echo MY_TEST_KEY = $VITE_URL_${GITHUB_REF##*/}
     

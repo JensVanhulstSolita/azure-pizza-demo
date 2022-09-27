@@ -11,7 +11,8 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      # checkout the repo
-      - name: "Checkout GitHub Action"
-        run: echo MY_TEST_KEY = ${{ secrets.VITE_URL_${GITHUB_REF##*/} }}
-    
+      - shell: bash
+        env:
+          SUPER_SECRET: VITE_URL_${GITHUB_REF##*/}
+        run: |
+          echo ${{ secrets.$SUPER_SECRET }}
